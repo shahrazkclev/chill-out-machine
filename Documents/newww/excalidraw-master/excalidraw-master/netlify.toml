@@ -8,12 +8,11 @@
 
 # SPA routing - redirect all routes to index.html
 # This handles client-side routing for the React app
-# The _redirects file in public/ will also be copied to build/
+# Vite automatically copies public/_redirects to build/, but we also define it here
 [[redirects]]
   from = "/*"
   to = "/index.html"
   status = 200
-  force = false
 
 [headers]
   for = "/*"
