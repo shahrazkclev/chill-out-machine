@@ -23,8 +23,19 @@ export default defineConfig(({ mode }) => ({
   build: {
     outDir: 'dist',
     sourcemap: true,
+    commonjsOptions: {
+      include: [/node_modules/],
+      transformMixedEsModules: true,
+    },
   },
   optimizeDeps: {
-    exclude: ['@excalidraw/excalidraw']
+    include: [
+      '@excalidraw/excalidraw',
+      'png-chunks-extract',
+      'png-chunk-text',
+    ],
+    esbuildOptions: {
+      target: 'esnext',
+    },
   },
 }));
