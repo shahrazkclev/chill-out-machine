@@ -1,12 +1,13 @@
 [build]
-  command = "cd Desktop/newww && yarn install --ignore-engines && yarn build:packages && yarn --cwd ./excalidraw-app build:app:netlify && yarn --cwd ./excalidraw-app build:version"
-  publish = "Desktop/newww/excalidraw-app/build"
+  base = "Desktop/newww"
+  command = "yarn install --ignore-engines && yarn build:packages && yarn --cwd ./excalidraw-app build:app:netlify && yarn --cwd ./excalidraw-app build:version"
+  publish = "excalidraw-app/build"
 
 [build.environment]
   NODE_VERSION = "18"
   YARN_VERSION = "1.22.22"
   NPM_FLAGS = "--legacy-peer-deps"
-  CI = "false"
+  CI = "true"
   VITE_APP_ENABLE_ESLINT = "false"
 
 # SPA routing - redirect all routes to index.html
