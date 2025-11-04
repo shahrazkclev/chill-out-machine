@@ -13,6 +13,7 @@ export default defineConfig(({ mode }) => {
   const envVars = loadEnv(mode, `../`);
   // https://vitejs.dev/config/
   return {
+    cacheDir: process.env.VITE_CACHE_DIR || path.resolve(__dirname, "../.vite-cache"),
     server: {
       port: Number(envVars.VITE_APP_PORT || 3000),
       // open the browser
