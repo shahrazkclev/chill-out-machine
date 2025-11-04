@@ -1,4 +1,4 @@
-﻿{
+{
   "name": "cleverpoly-scriptor-app",
   "version": "1.0.0",
   "private": true,
@@ -13,6 +13,7 @@
     "@capacitor/android": "^7.2.0",
     "@capacitor/cli": "^7.2.0",
     "@capacitor/core": "^7.2.0",
+    "@supabase/supabase-js": "^2.79.0",
     "@types/node": "^24.10.0",
     "@vitejs/plugin-react": "^5.1.0",
     "lovable-tagger": "^1.1.11",
