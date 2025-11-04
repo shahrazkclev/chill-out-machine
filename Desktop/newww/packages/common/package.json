@@ -1,23 +1,25 @@
 {
-  "name": "@excalidraw/common",
-  "version": "0.18.0",
-  "type": "module",
-  "types": "./dist/types/common/src/index.d.ts",
-  "main": "./dist/prod/index.js",
-  "module": "./dist/prod/index.js",
-  "exports": {
-    ".": {
-      "types": "./dist/types/common/src/index.d.ts",
-      "development": "./dist/dev/index.js",
-      "production": "./dist/prod/index.js",
-      "default": "./dist/prod/index.js"
-    },
-    "./*": {
-      "types": "./dist/types/common/src/*.d.ts",
-      "development": "./dist/dev/index.js",
-      "production": "./dist/prod/index.js",
-      "default": "./dist/prod/index.js"
-    }
+  "name": "cleverpoly-scriptor-app",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "build:dev": "vite build --mode development",
+    "preview": "vite preview --port 8080"
+  },
+  "dependencies": {
+    "@capacitor-community/electron": "^5.0.1",
+    "@capacitor/android": "^7.2.0",
+    "@capacitor/cli": "^7.2.0",
+    "@capacitor/core": "^7.2.0",
+    "react": "19.0.0",
+    "react-dom": "19.0.0",
+    "vite": "^5.4.8",
+    "@vitejs/plugin-react": "latest"
+  }
+}
+
   },
   "files": [
     "dist/*"
