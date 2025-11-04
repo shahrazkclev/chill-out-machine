@@ -1,6 +1,6 @@
 [build]
-  command = "yarn install --ignore-engines && yarn build:packages && yarn --cwd ./excalidraw-app build:app:netlify && yarn --cwd ./excalidraw-app build:version"
-  publish = "excalidraw-app/build"
+  command = "cd Desktop/newww && yarn install --ignore-engines && yarn build:packages && yarn --cwd ./excalidraw-app build:app:netlify && yarn --cwd ./excalidraw-app build:version"
+  publish = "Desktop/newww/excalidraw-app/build"
 
 [build.environment]
   NODE_VERSION = "18"
@@ -11,11 +11,11 @@
 
 # SPA routing - redirect all routes to index.html
 # This handles client-side routing for the React app
-# The _redirects file in the build directory will handle this
 [[redirects]]
   from = "/*"
   to = "/index.html"
   status = 200
+  force = true
 
 [[headers]]
   for = "/*"
