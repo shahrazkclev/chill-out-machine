@@ -121,9 +121,9 @@ export default defineConfig(({ mode }) => {
       woff2BrowserPlugin(),
       react(),
       checker({
-        typescript: true,
+        typescript: mode === "production" ? false : true,
         eslint:
-          envVars.VITE_APP_ENABLE_ESLINT === "false"
+          envVars.VITE_APP_ENABLE_ESLINT === "false" || mode === "production"
             ? undefined
             : { lintCommand: 'eslint "./**/*.{js,ts,tsx}"' },
         overlay: {

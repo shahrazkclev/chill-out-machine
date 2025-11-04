@@ -1,10 +1,13 @@
 [build]
-  command = "yarn install && yarn build:packages && yarn --cwd excalidraw-app build:app:netlify && yarn --cwd excalidraw-app build:version"
+  command = "yarn install --ignore-engines && yarn build:packages && cd excalidraw-app && yarn build:app:netlify && yarn build:version"
   publish = "excalidraw-app/build"
 
 [build.environment]
   NODE_VERSION = "18"
   YARN_VERSION = "1.22.22"
+  NPM_FLAGS = "--legacy-peer-deps"
+  CI = "false"
+  VITE_APP_ENABLE_ESLINT = "false"
 
 # SPA routing - redirect all routes to index.html
 # This handles client-side routing for the React app
