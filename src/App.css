@@ -15,8 +15,123 @@ html, body, #root {
   flex-direction: column;
   height: 100vh;
   width: 100vw;
+  position: relative;
 }
 
+/* Sidebar */
+.sidebar {
+  position: fixed;
+  left: -320px;
+  top: 0;
+  width: 320px;
+  height: 100vh;
+  background: hsl(var(--background));
+  border-right: 1px solid hsl(var(--border));
+  z-index: 1000;
+  transition: left 0.3s ease;
+  display: flex;
+  flex-direction: column;
+}
+
+.sidebar.open {
+  left: 0;
+  box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.sidebar-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.5rem;
+  border-bottom: 1px solid hsl(var(--border));
+}
+
+.sidebar-header h2 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: hsl(var(--foreground));
+}
+
+.close-btn {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: hsl(var(--muted-foreground));
+  padding: 0.25rem;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 0.375rem;
+  transition: all 0.2s ease;
+}
+
+.close-btn:hover {
+  background: hsl(var(--accent));
+  color: hsl(var(--accent-foreground));
+}
+
+.sidebar-content {
+  flex: 1;
+  overflow-y: auto;
+  padding: 1rem;
+}
+
+.drawing-item {
+  background: hsl(var(--card));
+  border: 1px solid hsl(var(--border));
+  border-radius: 0.5rem;
+  padding: 1rem;
+  margin-bottom: 0.75rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.drawing-item:hover {
+  border-color: hsl(var(--primary));
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.drawing-item h3 {
+  font-size: 1rem;
+  font-weight: 500;
+  color: hsl(var(--foreground));
+  margin-bottom: 0.25rem;
+}
+
+.drawing-item p {
+  font-size: 0.875rem;
+  color: hsl(var(--muted-foreground));
+}
+
+.delete-btn {
+  background: hsl(var(--destructive));
+  color: hsl(var(--destructive-foreground));
+  border: none;
+  padding: 0.5rem 0.75rem;
+  border-radius: 0.375rem;
+  font-size: 0.875rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.delete-btn:hover {
+  opacity: 0.9;
+}
+
+.empty-state {
+  text-align: center;
+  color: hsl(var(--muted-foreground));
+  padding: 2rem;
+  font-size: 0.875rem;
+}
+
+/* Toolbar */
 .toolbar {
   display: flex;
   align-items: center;
@@ -24,24 +139,60 @@ html, body, #root {
   padding: 1rem 2rem;
   background: hsl(var(--background));
   border-bottom: 1px solid hsl(var(--border));
+  gap: 1rem;
+}
+
+.toolbar-left,
+.toolbar-right {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
 }
 
 .toolbar h1 {
-  font-size: 1.5rem;
+  font-size: 1.25rem;
   font-weight: 600;
   color: hsl(var(--foreground));
+  white-space: nowrap;
+}
+
+.menu-btn,
+.new-btn {
+  padding: 0.5rem 1rem;
+  background: hsl(var(--secondary));
+  color: hsl(var(--secondary-foreground));
+  border: 1px solid hsl(var(--border));
+  border-radius: 0.5rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+.menu-btn:hover,
+.new-btn:hover {
+  background: hsl(var(--accent));
+  color: hsl(var(--accent-foreground));
+}
+
+.save-status {
+  font-size: 0.875rem;
+  color: hsl(var(--muted-foreground));
+  white-space: nowrap;
 }
 
 .export-btn {
-  padding: 0.5rem 1.5rem;
+  padding: 0.5rem 1rem;
   background: hsl(var(--primary));
   color: hsl(var(--primary-foreground));
   border: none;
   border-radius: 0.5rem;
-  font-size: 1rem;
+  font-size: 0.875rem;
   font-weight: 500;
   cursor: pointer;
   transition: all 0.2s ease;
+  white-space: nowrap;
 }
 
 .export-btn:hover {
@@ -53,13 +204,50 @@ html, body, #root {
   transform: translateY(0);
 }
 
+/* Drawing Area */
 .excalidraw-wrapper {
   flex: 1;
   height: calc(100vh - 73px);
   width: 100%;
+  overflow: hidden;
 }
 
 .excalidraw-wrapper .excalidraw {
   height: 100%;
   width: 100%;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .toolbar {
+    flex-wrap: wrap;
+    padding: 0.75rem 1rem;
+  }
+
+  .toolbar h1 {
+    font-size: 1rem;
+    order: 1;
+    width: 100%;
+    margin-bottom: 0.5rem;
+  }
+
+  .toolbar-left {
+    order: 2;
+  }
+
+  .toolbar-right {
+    order: 3;
+  }
+
+  .sidebar {
+    width: 280px;
+    left: -280px;
+  }
+
+  .menu-btn,
+  .new-btn,
+  .export-btn {
+    font-size: 0.75rem;
+    padding: 0.4rem 0.75rem;
+  }
 }
