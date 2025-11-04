@@ -1,6 +1,6 @@
-[build]
-  command = "yarn install --ignore-engines && yarn build:packages && yarn --cwd ./excalidraw-app build:app:netlify && yarn --cwd ./excalidraw-app build:version"
-  publish = "excalidraw-app/build"
+﻿[build]
+  command = "cd Desktop/newww && yarn install --ignore-engines && yarn build:packages && yarn --cwd ./excalidraw-app build:app:netlify && yarn --cwd ./excalidraw-app build:version"
+  publish = "Desktop/newww/excalidraw-app/build"
 
 [build.environment]
   NODE_VERSION = "18"
